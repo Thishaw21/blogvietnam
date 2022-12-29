@@ -45,14 +45,7 @@ INSTALLED_APPS = [
     'notification',
     'ckeditor',
 
-    #fb
-        'social_django',  
-        # google
-     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    
 ]
 
 MIDDLEWARE = [
@@ -64,8 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    #fb
-    'social_django.middleware.SocialAuthExceptionMiddleware', 
+    
 ]
 SITE_ID = 1
 SOCIALACCOUNT_LOGIN_ON_GET=True
@@ -83,13 +75,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'blog.context_processors.get_all_categories',
-                # 'user_profile.context_processors.user_notifications'
-
-                # 'user_profile.context_processors.user_notifications'
-
-                # fb
-                 'social_django.context_processors.backends',  # <--
-                'social_django.context_processors.login_redirect',  # <--
+              
             ],
         },
     },
@@ -106,10 +92,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
 
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'news',
-        # 'USER': 'root',
-        # 'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '8000',
     }
@@ -165,48 +147,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_profile.User'
 
-AUTHENTICATION_BACKENDS = (
-    "user_profile.backends.EmailAuthenticationBackend",
-    # "django.contrib.auth.backends.ModelBackend"
-
-    'social_core.backends.open_id.OpenIdAuth',
-    # 'social_core.backends.google.GoogleOpenId',
-    # 'social_core.backends.google.GoogleOAuth2',
-
-    #fb
-    'social_core.backends.facebook.FacebookOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-    
-    #google
-    # 'user.backends.EmailBackend'
-    'allauth.account.auth_backends.AuthenticationBackend'
-)
-SOCIAL_AUTH_FACEBOOK_KEY = '3283681288567416'
-SOCIAL_AUTH_FACEBOOK_SECRET = '3d3f182b237a230146c352f3e210274c'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-  'locale': 'en',
-  'fields': 'id,name'
-}
-# gg
-
 SOCIALACCOUNT_PROVIDERS = \
     {
-    'facebook':
-       {'SCOPE': ['email', 'publish_stream'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'METHOD': 'oauth2',
-        'LOCALE_FUNC': lambda request: 'en_US',
-        'VERIFIED_EMAIL': False},
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
+    
     
 } 
 
@@ -214,13 +157,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'vanhuydn10301@gmail.com'
-EMAIL_HOST_PASSWORD = 'nggpwjyxqpanyysx'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'CAP1N24 Team <vipro@cap1n24.com>'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

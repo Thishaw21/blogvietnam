@@ -24,10 +24,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('user_profile.urls')),
 
-    #mxh
-      path('oauth/', include('social_django.urls', namespace='social')),
-    #   google
-     path("", include("allauth.urls")), #most important
+    
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
